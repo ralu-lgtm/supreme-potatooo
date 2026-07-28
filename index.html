@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Become a Supreme Potato™</title>
+
+  <style>
+    :root {
+      --bg: #fffaf0;
+      --card: rgba(255,255,255,.88);
+      --text: #18213a;
+      --muted: #687086;
+      --line: rgba(24,33,58,.12);
+      --yellow: #ffc145;
+      --orange: #ff7847;
+      --pink: #ef4b9b;
+      --purple: #7157dc;
+      --blue: #3875f6;
+      --green: #38ad73;
+      --gradient: linear-gradient(110deg,#3875f6,#7157dc,#ef4b9b,#ff7847,#ffc145);
+      --shadow: 0 25px 70px rgba(41,35,72,.14);
+    }
+
+    body.dark {
+      --bg: #14121c;
+      --card: rgba(34,30,46,.92);
+      --text: #fffaf2;
+      --muted: #b5aec7;
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 25px 70px rgba(0,0,0,.38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 5%,rgba(255,193,69,.25),transparent 28rem),
+        radial-gradient(circle at 90% 20%,rgba(56,117,246,.16),transparent 30rem),
+        var(--bg);
+      font-family: Inter, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.65;
+      transition: .3s;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .3;
+      background-image: radial-gradient(circle,rgba(40,40,60,.13) 1px,transparent 1px);
+      background-size: 25px 25px;
+      pointer-events: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px,calc(100% - 36px));
+      margin: auto;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: var(--gradient);
+      background-size: 180%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: gradient 7s ease infinite;
+    }
+
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 0;
+      height: 5px;
+      background: var(--gradient);
+    }
+
+    /* Navigation */
+
+    nav {
+      position: sticky;
+      top: 13px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1200px,calc(100% - 24px));
+      min-height: 68px;
+      margin: 13px auto;
+      padding: 9px 13px 9px 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb,var(--bg) 78%,transparent);
+      box-shadow: 0 10px 35px rgba(30,30,50,.08);
+      backdrop-filter: blur(20px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 950;
+    }
+
+    .logo-potato {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      place-items: center;
+      border-radius: 15px;
+      background: linear-gradient(145deg,#ffdc86,#ff9848);
+      box-shadow: 0 8px 20px rgba(255,120,50,.2);
+      font-size: 1.35rem;
+      transform: rotate(-5deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 800;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--card);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 7px;
+    }
+
+    .round-button,
+    .progress-button {
+      min-height: 45px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      cursor: pointer;
+    }
+
+    .round-button {
+      width: 45px;
+      padding: 0;
+      font-size: 1.05rem;
+    }
+
+    .progress-button {
+      padding: 0 15px;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: calc(100vh - 90px);
+      padding: 80px 0 110px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: clamp(45px,7vw,90px);
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4rem,8vw,7.5rem);
+      line-height: .85;
+      letter-spacing: -.085em;
+    }
+
+    h1 small {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--text);
+      font-size: .25em;
+      letter-spacing: -.04em;
+    }
+
+    .hero-text {
+      max-width: 600px;
+      margin: 27px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.1rem,2vw,1.35rem);
+    }
+
+    .hero-text strong {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 31px;
+    }
+
+    .main-button,
+    .second-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 55px;
+      padding: 0 22px;
+      border-radius: 17px;
+      cursor: pointer;
+      font-weight: 950;
+      transition: .2s;
+    }
+
+    .main-button {
+      color: white;
+      border: 0;
+      background: var(--gradient);
+      box-shadow: 0 15px 35px rgba(113,87,220,.25);
+    }
+
+    .second-button {
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .main-button:hover,
+    .second-button:hover {
+      transform: translateY(-3px);
+    }
+
+    .mini-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 27px;
+    }
+
+    .mini-tags span {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+
+    .hero-picture {
+      position: relative;
+      padding: 11px;
+      border-radius: 46px;
+      background: rgba(255,255,255,.48);
+      box-shadow: var(--shadow);
+      transform: rotate(1.5deg);
+    }
+
+    .hero-picture img {
+      aspect-ratio: 1;
+      border-radius: 37px;
+      object-fit: cover;
+    }
+
+    .sticker {
+      position: absolute;
+      z-index: 2;
+      padding: 11px 15px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 12px 35px rgba(30,30,60,.15);
+      color: #18213a;
+      font-size: .8rem;
+      font-weight: 950;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .sticker.one {
+      top: 10%;
+      left: -5%;
+      transform: rotate(-7deg);
+    }
+
+    .sticker.two {
+      right: -4%;
+      bottom: 13%;
+      animation-delay: -2s;
+      transform: rotate(5deg);
+    }
+
+    /* Evolution */
+
+    .evolution {
+      padding-bottom: 110px;
+    }
+
+    .evolution-box {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px,5vw,52px);
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      background: linear-gradient(135deg,rgba(255,193,69,.17),rgba(56,117,246,.1),rgba(239,75,155,.1)),var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .evolution-box h2 {
+      margin: 0 0 27px;
+      font-size: clamp(1.8rem,4vw,3.2rem);
+      letter-spacing: -.055em;
+    }
+
+    .evolution-track {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 13px;
+    }
+
+    .stage {
+      position: relative;
+      min-height: 145px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background: var(--card);
+      transition: .25s;
+    }
+
+    .stage:hover {
+      transform: translateY(-6px) rotate(-1deg);
+    }
+
+    .stage .emoji {
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+
+    .stage strong {
+      display: block;
+    }
+
+    .stage span {
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* Chapters */
+
+    .manual {
+      padding: 70px 0 120px;
+    }
+
+    .section-title {
+      max-width: 750px;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 13px;
+      font-size: clamp(2.8rem,6vw,5.3rem);
+      line-height: .95;
+      letter-spacing: -.075em;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .chapters {
+      display: grid;
+      gap: 31px;
+    }
+
+    .chapter {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      min-height: 530px;
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      background: var(--card);
+      box-shadow: 0 15px 50px rgba(35,30,65,.08);
+      transition: .3s;
+    }
+
+    .chapter:nth-child(even) {
+      grid-template-columns: 1.05fr .95fr;
+    }
+
+    .chapter:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .chapter.complete {
+      border-color: rgba(56,173,115,.65);
+      box-shadow: 0 20px 60px rgba(56,173,115,.14);
+    }
+
+    .chapter-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(30px,5vw,65px);
+    }
+
+    .chapter:nth-child(even) .chapter-content {
+      order: 2;
+    }
+
+    .chapter-image {
+      min-height: 430px;
+      padding: 22px;
+    }
+
+    .chapter:nth-child(even) .chapter-image {
+      order: 1;
+    }
+
+    .chapter-image img {
+      height: 100%;
+      border-radius: 28px;
+      object-fit: cover;
+    }
+
+    .number {
+      display: grid;
+      width: 53px;
+      height: 53px;
+      margin-bottom: 23px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--card);
+      font-size: .82rem;
+      font-weight: 950;
+    }
+
+    .complete .number {
+      color: white;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .chapter-label {
+      color: var(--purple);
+      font-size: .74rem;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .chapter h3 {
+      margin: 7px 0 20px;
+      font-size: clamp(2.2rem,4vw,4rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+    }
+
+    .chapter-text {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .chapter-text p {
+      margin: 0 0 12px;
+    }
+
+    .chapter-text strong {
+      color: var(--text);
+    }
+
+    .quote {
+      margin-top: 20px;
+      padding: 17px 19px;
+      border-left: 5px solid var(--yellow);
+      border-radius: 0 17px 17px 0;
+      background: rgba(255,193,69,.12);
+      font-weight: 900;
+    }
+
+    .check-button {
+      align-self: flex-start;
+      margin-top: 23px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 950;
+    }
+
+    .complete .check-button {
+      color: white;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    /* Custom chapter panels */
+
+    .custom-visual {
+      display: grid;
+      height: 100%;
+      min-height: 430px;
+      padding: 30px;
+      place-items: center;
+      border-radius: 28px;
+      background: linear-gradient(145deg,#fff1b9,#ffd1bd,#d4deff);
+      color: #18213a;
+    }
+
+    .tabs {
+      width: 100%;
+      padding: 20px;
+      border-radius: 24px;
+      background: #211c2a;
+      box-shadow: 0 20px 50px rgba(0,0,0,.28);
+      color: white;
+    }
+
+    .tab {
+      display: flex;
+      justify-content: space-between;
+      margin: 9px 0;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,.07);
+      font-size: .8rem;
+    }
+
+    .coffee {
+      margin-top: 18px;
+      padding: 13px;
+      border-radius: 13px;
+      background: #ffd166;
+      color: #211c2a;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .improvements {
+      display: grid;
+      width: 100%;
+      gap: 12px;
+    }
+
+    .improvement {
+      padding: 17px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 10px 25px rgba(30,30,60,.1);
+      font-weight: 900;
+    }
+
+    .improvement:nth-child(2) {
+      margin-left: 7%;
+    }
+
+    .improvement:nth-child(3) {
+      margin-left: 14%;
+    }
+
+    .improvement:nth-child(4) {
+      margin-left: 21%;
+      color: white;
+      background: linear-gradient(110deg,var(--purple),var(--pink));
+    }
+
+    .noise {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 11px;
+    }
+
+    .noise span {
+      padding: 11px 14px;
+      border-radius: 999px;
+      background: white;
+      box-shadow: 0 8px 22px rgba(30,30,60,.08);
+      font-size: .82rem;
+      font-weight: 900;
+      transition: .2s;
+    }
+
+    .noise span:hover {
+      opacity: .25;
+      transform: scale(.8);
+    }
+
+    .noise .important {
+      color: white;
+      background: linear-gradient(110deg,var(--blue),var(--purple));
+      transform: scale(1.12);
+    }
+
+    .ai-grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .ai-side {
+      min-height: 270px;
+      padding: 21px;
+      border-radius: 22px;
+      background: white;
+    }
+
+    .ai-side:first-child {
+      color: white;
+      background: linear-gradient(145deg,#283453,#5959da);
+    }
+
+    .ai-side h4 {
+      margin-top: 0;
+    }
+
+    .ai-side ul {
+      padding: 0;
+      list-style: none;
+      font-size: .83rem;
+      font-weight: 800;
+    }
+
+    .ai-side li {
+      margin: 10px 0;
+    }
+
+    /* Rules */
+
+    .rules {
+      padding: 110px 0;
+      background: linear-gradient(135deg,rgba(34,190,197,.08),rgba(113,87,220,.1),rgba(239,75,155,.08));
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+    }
+
+    .rule {
+      min-height: 180px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--card);
+      box-shadow: 0 12px 35px rgba(30,30,60,.08);
+      transition: .25s;
+    }
+
+    .rule:hover {
+      transform: translateY(-6px) rotate(-.5deg);
+    }
+
+    .rule .emoji {
+      font-size: 2rem;
+    }
+
+    .rule h3 {
+      margin: 11px 0 5px;
+      letter-spacing: -.04em;
+    }
+
+    .rule p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    /* Achievement */
+
+    .final {
+      padding: 110px 0 80px;
+    }
+
+    .achievement {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(45px,8vw,90px);
+      border-radius: 47px;
+      color: white;
+      background:
+        radial-gradient(circle at 15% 10%,rgba(255,209,102,.78),transparent 22rem),
+        radial-gradient(circle at 90% 5%,rgba(34,190,197,.45),transparent 23rem),
+        linear-gradient(140deg,#332868,#7148d9,#e74c98);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .achievement h2 {
+      margin: 10px 0 15px;
+      font-size: clamp(3rem,7vw,6.5rem);
+      line-height: .9;
+      letter-spacing: -.075em;
+    }
+
+    .achievement p {
+      max-width: 670px;
+      margin: 0 auto 25px;
+      color: rgba(255,255,255,.82);
+    }
+
+    .trophy {
+      font-size: 5rem;
+    }
+
+    .path {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 28px 0;
+    }
+
+    .path span {
+      padding: 9px 13px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      font-size: .8rem;
+      font-weight: 900;
+    }
+
+    #claim {
+      padding: 16px 22px;
+      border: 0;
+      border-radius: 16px;
+      background: white;
+      color: #29204c;
+      cursor: pointer;
+      box-shadow: 0 17px 40px rgba(30,20,70,.25);
+      font-weight: 950;
+    }
+
+    footer {
+      padding: 10px 20px 45px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .83rem;
+    }
+
+    /* Certificate */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: grid;
+      visibility: hidden;
+      opacity: 0;
+      padding: 20px;
+      place-items: center;
+      background: rgba(17,14,29,.76);
+      backdrop-filter: blur(13px);
+      transition: .25s;
+    }
+
+    .modal.open {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .certificate {
+      position: relative;
+      width: min(650px,100%);
+      padding: clamp(35px,6vw,60px);
+      border: 7px solid #ffd166;
+      border-radius: 35px;
+      background: #fffaf0;
+      box-shadow: 0 40px 100px rgba(0,0,0,.4);
+      color: #18213a;
+      text-align: center;
+      transform: scale(.92);
+      transition: .25s;
+    }
+
+    .modal.open .certificate {
+      transform: scale(1);
+    }
+
+    .certificate h2 {
+      margin: 10px 0;
+      font-size: clamp(2.5rem,7vw,4.5rem);
+      line-height: .95;
+      letter-spacing: -.07em;
+    }
+
+    .certificate p {
+      color: #687086;
+    }
+
+    .close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(24,33,58,.08);
+      cursor: pointer;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1400;
+      max-width: calc(100% - 36px);
+      padding: 15px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      font-size: .87rem;
+      font-weight: 850;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: .25s;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .falling {
+      position: fixed;
+      top: -60px;
+      z-index: 1500;
+      pointer-events: none;
+      animation: rain linear forwards;
+    }
+
+    @keyframes gradient {
+      0%,100% { background-position: 0 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes float {
+      0%,100% { translate: 0 0; }
+      50% { translate: 0 -12px; }
+    }
+
+    @keyframes rain {
+      to {
+        top: 110vh;
+        rotate: 720deg;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .chapter,
+      .chapter:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-text {
+        margin-inline: auto;
+      }
+
+      .hero-actions,
+      .mini-tags {
+        justify-content: center;
+      }
+
+      .chapter-content,
+      .chapter:nth-child(even) .chapter-content {
+        order: 1;
+      }
+
+      .chapter-image,
+      .chapter:nth-child(even) .chapter-image {
+        order: 2;
+      }
+
+      .evolution-track,
+      .rules-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 22px);
+      }
+
+      nav {
+        top: 7px;
+        width: calc(100% - 14px);
+        margin-top: 7px;
+        border-radius: 22px;
+      }
+
+      .logo > span:last-child,
+      .progress-button {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 60px;
+      }
+
+      h1 {
+        font-size: clamp(3.5rem,18vw,5.3rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .main-button,
+      .second-button {
+        width: 100%;
+      }
+
+      .evolution-track,
+      .rules-grid,
+      .ai-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter {
+        border-radius: 29px;
+      }
+
+      .chapter-content {
+        padding: 31px 24px;
+      }
+
+      .chapter-image {
+        min-height: 350px;
+        padding: 12px;
+      }
+
+      .custom-visual {
+        min-height: 350px;
+        padding: 20px;
+      }
+
+      .achievement {
+        border-radius: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="reading-progress"></div>
+
+  <nav>
+    <a href="#top" class="logo">
+      <span class="logo-potato">🥔</span>
+      <span>Supreme Potato™</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#manual">Manual</a>
+      <a href="#rules">Rules</a>
+      <a href="#final">Achievement</a>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="progress-button" id="chapter-progress">0/10 completed</button>
+      <button class="round-button" id="wisdom" title="Potato wisdom">🔮</button>
+      <button class="round-button" id="theme" title="Underground mode">🌙</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="tag">🥔 Official underground manual</span>
+
+          <h1>
+            <small>How to Become a</small>
+            <span class="gradient-text">Supreme Potato™</span>
+          </h1>
+
+          <p class="hero-text">
+            A <strong>totally serious guide</strong> for surviving,
+            learning and quietly becoming legendary in the AI era. ✨
+          </p>
+
+          <div class="hero-actions">
+            <a href="#manual" class="main-button">
+              Begin the transformation 🥔
+            </a>
+
+            <button class="second-button" id="surprise">
+              Surprise me 🎲
+            </button>
+          </div>
+
+          <div class="mini-tags">
+            <span>🌱 No startup required</span>
+            <span>☕ Coffee compatible</span>
+            <span>🤖 AI era approved</span>
+            <span>✨ Suspiciously useful</span>
+          </div>
+        </div>
+
+        <div class="hero-picture">
+          <div class="sticker one">👀 Slightly confused</div>
+          <div class="sticker two">🏆 Future legend</div>
+
+          <img
+            src="4A2D816F-5E6A-468B-91BF-415AE803BB2B.jpeg"
+            alt="Happy Supreme Potato in a field"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="evolution">
+      <div class="container">
+        <div class="evolution-box">
+          <span class="tag">🧬 Potato evolution detected</span>
+          <h2>Every legend begins with one confused potato.</h2>
+
+          <div class="evolution-track">
+            <div class="stage">
+              <div class="emoji">🥔</div>
+              <strong>Potato</strong>
+              <span>Existing peacefully. Possibly buried.</span>
+            </div>
+
+            <div class="stage">
+              <div class="emoji">👀</div>
+              <strong>Curious Potato</strong>
+              <span>Asking dangerous amounts of questions.</span>
+            </div>
+
+            <div class="stage">
+              <div class="emoji">💻</div>
+              <strong>Builder Potato</strong>
+              <span>Turning tiny ideas into real things.</span>
+            </div>
+
+            <div class="stage">
+              <div class="emoji">🏆</div>
+              <strong>Supreme Potato™</strong>
+              <span>Powerful, competent and still humble.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="manual" id="manual">
+      <div class="container">
+        <header class="section-title">
+          <span class="tag">📚 Ten completely serious chapters</span>
+
+          <h2>
+            The Underground
+            <span class="gradient-text">Manual</span>
+          </h2>
+
+          <p>
+            Read carefully. Complete every chapter. Become suspiciously
+            competent without disturbing the soil. 🌱
+          </p>
+        </header>
+
+        <div class="chapters">
+          <article class="chapter" id="chapter-1" data-number="1">
+            <div class="chapter-content">
+              <div class="number">01</div>
+              <div class="chapter-label">🌱 The beginning</div>
+              <h3>Accept your destiny.</h3>
+
+              <div class="chapter-text">
+                <p>Every Supreme Potato starts exactly the same way.</p>
+                <p><strong>Buried.</strong></p>
+                <p>No followers. No startup. No VC funding. Just… dirt.</p>
+                <p>The secret?</p>
+              </div>
+
+              <div class="quote">
+                Don’t complain about the soil. Use it as free office space.
+                🪴
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <img
+                src="F1313AEC-85EA-4C34-95A7-79B238340BBE.jpeg"
+                alt="Little potato growing underground"
+              >
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-2" data-number="2">
+            <div class="chapter-content">
+              <div class="number">02</div>
+              <div class="chapter-label">👀 Strategic confusion</div>
+              <h3>Look confused.</h3>
+
+              <div class="chapter-text">
+                <p>
+                  Every genius spends at least <strong>37%</strong> of
+                  the time looking like this:
+                </p>
+                <p style="font-size:2.2rem">👀</p>
+                <p><strong>“Is this working?”</strong></p>
+                <p>Excellent. You’re learning.</p>
+              </div>
+
+              <div class="quote">
+                If everything makes perfect sense, you’re probably not
+                learning anything new.
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <img
+                src="B12AA5C3-A438-4622-BD00-98046C59D84E.jpeg"
+                alt="Confused potato underground"
+              >
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-3" data-number="3">
+            <div class="chapter-content">
+              <div class="number">03</div>
+              <div class="chapter-label">📚 Quiet growth</div>
+              <h3>Learn underground.</h3>
+
+              <div class="chapter-text">
+                <p>
+                  While everyone is announcing their next revolutionary
+                  AI startup, you quietly:
+                </p>
+                <p>
+                  📖 read<br>
+                  🧪 experiment<br>
+                  💥 fail<br>
+                  🛠️ rebuild<br>
+                  ⚙️ automate<br>
+                  🔁 repeat
+                </p>
+                <p>Nobody claps. <strong>Perfect.</strong></p>
+              </div>
+
+              <div class="quote">Roots grow in silence. 🌱</div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <img
+                src="B5383478-6052-4F31-9332-E3646CCA829F.jpeg"
+                alt="Potato studying underground with a laptop"
+              >
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-4" data-number="4">
+            <div class="chapter-content">
+              <div class="number">04</div>
+              <div class="chapter-label">🔥 Healthy obsession-ish</div>
+              <h3>Become suspiciously obsessed.</h3>
+
+              <div class="chapter-text">
+                <p>One laptop. 💻</p>
+                <p>One notebook. 📓</p>
+                <p>Three thousand browser tabs. 🌐</p>
+                <p>Twenty-seven unfinished ideas. 💡</p>
+                <p>Coffee? <strong>Yes.</strong> ☕</p>
+                <p>Sleep? <strong>…optional.</strong> 👀</p>
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <div class="custom-visual">
+                <div class="tabs">
+                  <div class="tab">
+                    <span>🤖 Learn absolutely everything about AI</span>
+                    <span>×</span>
+                  </div>
+                  <div class="tab">
+                    <span>🥔 Can potatoes become CEOs?</span>
+                    <span>×</span>
+                  </div>
+                  <div class="tab">
+                    <span>⚙️ Automation idea FINAL v17</span>
+                    <span>×</span>
+                  </div>
+                  <div class="tab">
+                    <span>💡 New idea I will definitely finish</span>
+                    <span>×</span>
+                  </div>
+                  <div class="coffee">Coffee status: CRITICAL ☕</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-5" data-number="5">
+            <div class="chapter-content">
+              <div class="number">05</div>
+              <div class="chapter-label">📈 Tiny gains</div>
+              <h3>Trust tiny improvements.</h3>
+
+              <div class="chapter-text">
+                <p>Today: <strong>+1 prompt.</strong></p>
+                <p>Tomorrow: <strong>+1 automation.</strong></p>
+                <p>Next week: <strong>+1 useful skill.</strong></p>
+                <p>One year later…</p>
+                <p>People suddenly call you <strong>“talented.”</strong></p>
+              </div>
+
+              <div class="quote">
+                They didn’t see the potato underground.
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <div class="custom-visual">
+                <div class="improvements">
+                  <div class="improvement">💬 Today: +1 prompt</div>
+                  <div class="improvement">⚙️ Tomorrow: +1 automation</div>
+                  <div class="improvement">🧠 Next week: +1 useful skill</div>
+                  <div class="improvement">🏆 One year later: talented</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-6" data-number="6">
+            <div class="chapter-content">
+              <div class="number">06</div>
+              <div class="chapter-label">🕶️ Harvest awareness</div>
+              <h3>Don’t compare your beginning to someone’s harvest.</h3>
+
+              <div class="chapter-text">
+                <p>Some potatoes already wear suits. 👔</p>
+                <p>Some are giving TED Talks. 🎤</p>
+                <p>Some somehow became CEOs. 📊</p>
+                <p><strong>Good for them.</strong></p>
+                <p>You’re still cooking. 🔥</p>
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <img
+                src="DCB40B0C-4ACD-4570-BE92-EE8D2A048F56.jpeg"
+                alt="Confident potato CEO wearing a suit"
+              >
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-7" data-number="7">
+            <div class="chapter-content">
+              <div class="number">07</div>
+              <div class="chapter-label">🔇 Selective attention</div>
+              <h3>Ignore unnecessary noise.</h3>
+
+              <div class="chapter-text">
+                <p>The internet says:</p>
+                <p><strong>“Learn everything.”</strong></p>
+                <p>The Supreme Potato says:</p>
+                <p style="font-size:2rem"><strong>“No.”</strong> 🙂‍↔️</p>
+                <p>Learn the thing you’ll actually use.</p>
+              </div>
+
+              <div class="quote">
+                Repeat until suspiciously competent.
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <div class="custom-visual">
+                <div class="noise">
+                  <span>Learn everything!</span>
+                  <span>Build nine startups!</span>
+                  <span>Post every hour!</span>
+                  <span class="important">Learn what you’ll use ✨</span>
+                  <span>Follow every trend!</span>
+                  <span>Never stop scrolling!</span>
+                  <span>Become a CEO today!</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-8" data-number="8">
+            <div class="chapter-content">
+              <div class="number">08</div>
+              <div class="chapter-label">🛠️ Secret construction</div>
+              <h3>Build quietly.</h3>
+
+              <div class="chapter-text">
+                <p>Don’t announce every idea.</p>
+                <p><strong>Build one.</strong></p>
+                <p><strong>Finish one.</strong></p>
+                <p><strong>Launch one.</strong></p>
+              </div>
+
+              <div class="quote">
+                Then go back underground before people ask weird questions.
+                🕳️🥔
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <img
+                src="0CFD9E0E-2D85-4C07-A996-AEA1A8633164.jpeg"
+                alt="Potato celebrating after building something"
+              >
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-9" data-number="9">
+            <div class="chapter-content">
+              <div class="number">09</div>
+              <div class="chapter-label">🤖 Proper delegation</div>
+              <h3>Let AI do boring things.</h3>
+
+              <div class="chapter-text">
+                <p>
+                  AI should automate:<br>
+                  ✅ repetitive work<br>
+                  ✅ summaries<br>
+                  ✅ formatting<br>
+                  ✅ documentation
+                </p>
+
+                <p>Not… <strong>thinking for you.</strong></p>
+              </div>
+
+              <div class="quote">
+                A Supreme Potato keeps the brain active. The AI gets the
+                paperwork.
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <div class="custom-visual">
+                <div class="ai-grid">
+                  <div class="ai-side">
+                    <h4>🤖 AI Department</h4>
+                    <ul>
+                      <li>✓ Repetitive work</li>
+                      <li>✓ Summaries</li>
+                      <li>✓ Formatting</li>
+                      <li>✓ Documentation</li>
+                    </ul>
+                  </div>
+
+                  <div class="ai-side">
+                    <h4>🥔 Potato Department</h4>
+                    <ul>
+                      <li>✓ Judgment</li>
+                      <li>✓ Curiosity</li>
+                      <li>✓ Decisions</li>
+                      <li>✓ Original thinking</li>
+                    </ul>
+                    <div style="font-size:3.5rem;text-align:center">🧠✨</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="chapter" id="chapter-10" data-number="10">
+            <div class="chapter-content">
+              <div class="number">10</div>
+              <div class="chapter-label">🌅 The emergence</div>
+              <h3>Emerge.</h3>
+
+              <div class="chapter-text">
+                <p>One day…</p>
+                <p>People will wonder:</p>
+                <p><strong>“Where did this person come from?”</strong></p>
+                <p>They didn’t see the months underground.</p>
+                <p>
+                  They only noticed the potato after it became
+                  <strong>legendary.</strong>
+                </p>
+              </div>
+
+              <button class="check-button">○ Mark chapter complete</button>
+            </div>
+
+            <div class="chapter-image">
+              <img
+                src="4A2D816F-5E6A-468B-91BF-415AE803BB2B.jpeg"
+                alt="Legendary potato emerging into the world"
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules" id="rules">
+      <div class="container">
+        <header class="section-title">
+          <span class="tag">📜 Official doctrine</span>
+
+          <h2>
+            Supreme Potato
+            <span class="gradient-text">Rules</span>
+          </h2>
+        </header>
+
+        <div class="rules-grid">
+          <article class="rule">
+            <div class="emoji">🔎</div>
+            <h3>Stay curious.</h3>
+            <p>Questions are tiny shovels. Keep digging.</p>
+          </article>
+
+          <article class="rule">
+            <div class="emoji">🌱</div>
+            <h3>Stay humble.</h3>
+            <p>Even legendary potatoes remember the soil.</p>
+          </article>
+
+          <article class="rule">
+            <div class="emoji">👽</div>
+            <h3>Stay weird.</h3>
+            <p>Normal ideas rarely grow extraordinary roots.</p>
+          </article>
+
+          <article class="rule">
+            <div class="emoji">🛠️</div>
+            <h3>Build more than you post.</h3>
+            <p>Quiet progress is still progress.</p>
+          </article>
+
+          <article class="rule">
+            <div class="emoji">💧</div>
+            <h3>Water your ideas.</h3>
+            <p>Give good ideas enough attention to grow.</p>
+          </article>
+
+          <article class="rule">
+            <div class="emoji">📱</div>
+            <h3>Remain unmashed.</h3>
+            <p>Don’t become mashed by social media.</p>
+          </article>
+
+          <article class="rule" style="grid-column:1/-1">
+            <div class="emoji">🏆🥔✨</div>
+            <h3>Never underestimate a determined potato.</h3>
+            <p>
+              Especially one with a laptop and a suspicious number of
+              browser tabs.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" id="final">
+      <div class="container">
+        <div class="achievement">
+          <div class="trophy">🏆</div>
+          <h2>Congratulations!</h2>
+
+          <p>
+            You survived the soil, the confusion, the browser tabs and
+            the suspiciously intense learning process.
+          </p>
+
+          <div class="path">
+            <span>🥔 Potato</span>
+            <span>➡️</span>
+            <span>👀 Curious Potato</span>
+            <span>➡️</span>
+            <span>💻 Builder Potato</span>
+            <span>➡️</span>
+            <span>🏆 Supreme Potato™</span>
+          </div>
+
+          <p>
+            Now go quietly conquer the AI era.<br>
+            Every empire begins with one slightly confused potato
+            staring at a laptop. 🥔✨
+          </p>
+
+          <button id="claim">Claim Supreme Potato status 🏆</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Grown underground with curiosity, chaos and
+    <strong>Supreme Potato Energy™</strong>. 🥔✨
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="certificate">
+      <button class="close" id="close">✕</button>
+
+      <div style="font-size:5rem">🥔🏆</div>
+      <small>OFFICIAL CERTIFICATE OF EVOLUTION</small>
+
+      <h2>Supreme Potato™</h2>
+
+      <p>
+        This certifies that its courageous holder survived the soil,
+        ignored unnecessary noise, kept the brain active and became
+        suspiciously competent in the AI era.
+      </p>
+
+      <strong>✨ Underground Council Approved ✨</strong>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const chapters = [...document.querySelectorAll(".chapter")];
+    const progressText = document.getElementById("chapter-progress");
+    const readingProgress = document.getElementById("reading-progress");
+    const toast = document.getElementById("toast");
+    const modal = document.getElementById("modal");
+
+    let completed = JSON.parse(
+      localStorage.getItem("potato-progress") || "[]"
+    );
+
+    let toastTimer;
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    function renderProgress() {
+      chapters.forEach(chapter => {
+        const number = Number(chapter.dataset.number);
+        const button = chapter.querySelector(".check-button");
+        const isComplete = completed.includes(number);
+
+        chapter.classList.toggle("complete", isComplete);
+        button.textContent = isComplete
+          ? "✓ Chapter completed"
+          : "○ Mark chapter complete";
+      });
+
+      progressText.textContent = `${completed.length}/10 completed`;
+    }
+
+    chapters.forEach(chapter => {
+      chapter.querySelector(".check-button").addEventListener("click", () => {
+        const number = Number(chapter.dataset.number);
+
+        if (completed.includes(number)) {
+          completed = completed.filter(item => item !== number);
+          showToast(`🥔 Chapter ${number} returned underground.`);
+        } else {
+          completed.push(number);
+          completed.sort((a,b) => a - b);
+          showToast(`✅ Chapter ${number} complete! Roots gained.`);
+          potatoRain(7);
+        }
+
+        localStorage.setItem("potato-progress", JSON.stringify(completed));
+        renderProgress();
+
+        if (completed.length === 10) {
+          setTimeout(() => {
+            showToast("🏆 Supreme Potato status unlocked!");
+          }, 400);
+        }
+      });
+    });
+
+    window.addEventListener("scroll", () => {
+      const height =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      readingProgress.style.width =
+        `${height ? (window.scrollY / height) * 100 : 0}%`;
+    });
+
+    document.getElementById("theme").addEventListener("click", event => {
+      document.body.classList.toggle("dark");
+      const dark = document.body.classList.contains("dark");
+
+      event.currentTarget.textContent = dark ? "☀️" : "🌙";
+      showToast(
+        dark
+          ? "🌙 Underground mode activated."
+          : "☀️ The potato has emerged into daylight."
+      );
+    });
+
+    const wisdom = [
+      "🥔 Roots grow before results appear.",
+      "👀 Confusion is curiosity wearing a tiny hat.",
+      "🌱 Small progress still counts underground.",
+      "💻 Close one tab. You now have only 2,999.",
+      "☕ Coffee may supervise the operation.",
+      "🤖 Give AI the paperwork. Keep the thinking.",
+      "🏆 Never underestimate a potato with a plan.",
+      "✨ You are not late. You are still cooking."
+    ];
+
+    document.getElementById("wisdom").addEventListener("click", () => {
+      const message = wisdom[Math.floor(Math.random() * wisdom.length)];
+      showToast(message);
+    });
+
+    document.getElementById("surprise").addEventListener("click", () => {
+      const chapter = chapters[Math.floor(Math.random() * chapters.length)];
+
+      chapter.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      setTimeout(() => {
+        showToast(`🎲 Destiny selected Chapter ${chapter.dataset.number}.`);
+      }, 500);
+    });
+
+    document.getElementById("claim").addEventListener("click", () => {
+      modal.classList.add("open");
+      potatoRain(40);
+    });
+
+    document.getElementById("close").addEventListener("click", () => {
+      modal.classList.remove("open");
+    });
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        modal.classList.remove("open");
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        modal.classList.remove("open");
+      }
+    });
+
+    progressText.addEventListener("click", () => {
+      showToast(
+        completed.length === 10
+          ? "🏆 Manual complete. You are dangerously prepared."
+          : `🌱 ${10 - completed.length} chapters left.`
+      );
+    });
+
+    function potatoRain(amount) {
+      const emojis = ["🥔","✨","🏆","🌱","💻","👀"];
+
+      for (let i = 0; i < amount; i++) {
+        const particle = document.createElement("span");
+
+        particle.className = "falling";
+        particle.textContent =
+          emojis[Math.floor(Math.random() * emojis.length)];
+
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.fontSize = `${1 + Math.random() * 2}rem`;
+        particle.style.animationDuration = `${3 + Math.random() * 3}s`;
+        particle.style.animationDelay = `${Math.random()}s`;
+
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 7000);
+      }
+    }
+
+    renderProgress();
+  </script>
+</body>
+</html>
